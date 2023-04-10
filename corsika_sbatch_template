@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --job-name={job_name}
+#SBATCH --output={logs_dir}/%x.%J.out
+#SBATCH --error={logs_dir}/%x.%J.err
+
+# Corsika paths
+root_dir=/dicos_ui_home/antonpr/work/
+corsika_dir=${{root_dir}}/cors_fluka/corsika-75700/run/
+corsika_exe=corsika75700Linux_SIBYLL_fluka
+
+# Run
+cd ${{corsika_dir}}
+./${{corsika_exe}} < {inputs_file}
