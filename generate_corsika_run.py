@@ -6,7 +6,7 @@ from generate_run_layout import (create_layout,
 import subprocess
 
 
-run_layout = create_layout("12_simple_run")
+run_layout = create_layout("17_simple_run")
 
 
 njobs = 1

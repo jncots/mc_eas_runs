@@ -2,7 +2,7 @@ from pathlib import Path
 import stat
 import random
 
-corsika_inputs_template = "corsika_inputs_template_002"
+corsika_inputs_template = "corsika_inputs_template_003"
 corsika_sbatch_template = "corsika_sbatch_template"
 corsika_launch_template = "launch_template"
 
@@ -97,6 +97,7 @@ def create_input_params(run_layout, run_number, num_showers = 500):
         "observ_level2" : obs_levels[1],
         "observ_level3" : obs_levels[2],
         "observ_level4" : obs_levels[3],
+        "transition_energy" : 100, # in GeV
         "muon_mult_scat" : "F",
         "output_directory" : f"{results_dir}/"}
     
