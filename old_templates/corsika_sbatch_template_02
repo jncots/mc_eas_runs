@@ -11,6 +11,12 @@
 #SBATCH --error={logs_dir}/%x.%J.err
 
 # Corsika paths
+# root_dir=/dicos_ui_home/antonpr/work/
+# corsika_dir=${{root_dir}}/cors_fluka/corsika-75700/run/
+# corsika_exe=corsika75700Linux_SIBYLL_fluka
+# root_dir=/dicos_ui_home/antonpr/work/
+# corsika_dir=${{root_dir}}/apps/bin/corsika-77420/run/
+# corsika_exe=corsika77420Linux_SIBYLL_flukainfn
 root_dir=/dicos_ui_home/antonpr/work/
 corsika_dir=${{root_dir}}/apps/bin/corsika-77420_gfor930_fl2021/run/
 corsika_exe=corsika77420Linux_SIBYLL_flukainfn

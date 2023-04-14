@@ -6,14 +6,17 @@ from generate_run_layout import (create_layout,
 import subprocess
 
 
-run_layout = create_layout("21_simple_run")
+run_layout = create_layout("34_simple_run")
 
 
 njobs = 1
-nruns = 800
+nruns = 600
+num_showers_each = 5000
 batch_files = []
 for run_number in range(nruns):
-    input_params = create_input_params(run_layout, run_number)
+    input_params = create_input_params(run_layout, 
+                                       run_number,
+                                       num_showers = num_showers_each)
     inputs_file = create_inputs(run_layout, template, 
                                 input_params, run_number)
 
