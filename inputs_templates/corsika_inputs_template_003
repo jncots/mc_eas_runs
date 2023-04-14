@@ -15,7 +15,7 @@ OBSLEV  {observ_level4}                         observation level (in cm)
 FIXCHI  0.                             starting altitude (g/cm**2)
 MAGNET  1e-5  1e-5                     magnetic field centr. Europe
 HADFLG  0  0  0  0  0  2               flags hadr.interact.&fragmentation
-ECUTS   0.05  0.01  0.003  0.003         energy cuts for particles
+ECUTS   0.3  0.01  0.003  0.003         energy cuts for particles
 HILOW   {transition_energy}                            transition energy between models
 MUADDI  F                              additional info for muons
 MUMULT  {muon_mult_scat}                              muon multiple scattering angle
