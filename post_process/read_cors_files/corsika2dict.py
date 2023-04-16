@@ -33,3 +33,34 @@ class Corsika2Dict:
         corsika_results_dict['num_primaries'] = np.int64(self.num_primaries)
         
         return corsika_results_dict
+    
+    
+def join_dicts(results):
+    corsika_results_dict = {}
+    
+    # Assume that all dicts have the same structure:
+    result0 = results[0]
+    pdgs_to_get = list(result0.keys())[:-1]
+    obs_level_num = len(result0[pdgs_to_get[0]])
+
+    for pdg in pdgs_to_get:
+        corsika_results_dict[pdg] = {}
+        for obslev_id in range(obs_level_num):
+            corsika_results_dict[pdg][obslev_id] = {'theta [rad]': [], 
+                                                            'energy [GeV]': []}
+            angles = []
+            energies = []
+            for res in results:
+                angles.append(res[pdg][obslev_id]['theta [rad]'])
+                energies.append(res[pdg][obslev_id]['energy [GeV]'])
+
+            corsika_results_dict[pdg][obslev_id]['theta [rad]'] = np.concatenate(angles)
+            corsika_results_dict[pdg][obslev_id]['energy [GeV]'] = np.concatenate(energies) 
+
+    num_primaries = 0
+    for res in results:
+        num_primaries += res['num_primaries']
+
+    corsika_results_dict['num_primaries'] = np.int64(num_primaries)
+    
+    return corsika_results_dict
