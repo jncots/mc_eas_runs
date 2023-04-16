@@ -1,10 +1,9 @@
-from corsikaio import CorsikaParticleFile
 from pathlib import Path
 
 
-def corsika_data_files(direction):
+def corsika_data_files(directory):
     base_path = Path("/dicos_ui_home/antonpr/work/corsika_runs")
-    base_path = base_path / direction
+    base_path = base_path / directory
     path_to_res = base_path/"results"
 
     corsika_datafiles = []
@@ -13,10 +12,6 @@ def corsika_data_files(direction):
     
     return sorted(corsika_datafiles)
 
-
-# class PrintTable:
-#     def __init__(self, header, left_margin = 1, right_margin = 1, equal = True):
-#         self.
 
 def print_missed_files(corsika_data_files_list):
     fnames = [int(f.name[-3:]) for f in corsika_data_files_list]
@@ -37,33 +32,10 @@ def print_missed_files(corsika_data_files_list):
 
     print(f"Total: found files = {len(fnames)}, missed = {ss}, missed + found =  {len(fnames) + ss}")
         
-
-def read_file(filename):
-    with CorsikaParticleFile(filename) as f:
-        for i, e in enumerate(f):
-            particle_data = e.particles
-            print("Header:")
-            print(e.header)
-            print(i)
-            # print(particle_data)
-            print("Particle description:\n")
-            print(particle_data['particle_description'])
-            particles_in_subblock = particle_data['particle_description']
-            print("(particles_in_subblock - (particles_in_subblock % 1000)) / 1000:")
-            print((particles_in_subblock - (particles_in_subblock % 1000)) / 1000)
-            print(particles_in_subblock % 1000)
-            print(particles_in_subblock // 1000)
-            print(particles_in_subblock % 10)
-            
-            # print("t:\n")
-            # print(particle_data['t'])
-            input()
             
             
 if __name__ == "__main__":
     data_files = corsika_data_files("34_simple_run")
-    
-    
-    read_file(data_files[0])
+    print_missed_files(data_files)
     
                 

@@ -2,12 +2,9 @@ import numpy as np
 from particle import Corsika7ID, Particle
 
 
-def pdg_mass_maps(max_id = 70):
-    """Returns 2 numpy arrays which maps Corsika `ids` up to max_id
-    (not included, i.e. [0,max_id-1], max_id = 70 by default)
-
-    Args:
-        max_id (int, optional): maximum id to map. Defaults to 70.
+def pdg_mass_maps():
+    """Returns 2 numpy arrays which maps Corsika `ids` 
+    to pdg and mass
 
     Returns:
         `tuple(pdg_map, mass_map)`: 
@@ -16,8 +13,10 @@ def pdg_mass_maps(max_id = 70):
         0 doesn't corresponds to any particle in Corsika)
         `mass_map`: mass_map[corsika_id] == mass (in GeV)
     """
-    pdg_map = np.empty(max_id, dtype=np.int32)
-    mass_map = np.empty(max_id, dtype=np.float32)
+    # Max Corsika id = 195 
+    max_id = 195
+    pdg_map = np.empty(max_id + 1, dtype=np.int32)
+    mass_map = np.empty(max_id + 1, dtype=np.float32)
 
     min_int = np.iinfo(np.int32).min
     for i in range(pdg_map.size):
@@ -79,7 +78,7 @@ def angle_and_p2(px, py, pz, zenith_angle):
     return angles, p2
 
 
-def mass_pdg_level(particle_description):
+def mass_pdg_level(particle_description, maps):
     """Returns mass, pdg, and level arrays from 
     `particle_description` array returned by Corsika
 
@@ -90,9 +89,8 @@ def mass_pdg_level(particle_description):
         `masses` in GeV
         `pdgs` pdg ids
         `obs_levels` ids of observation levels (starting from `0`)
-    """
-    pdg_map, mass_map = pdg_mass_maps(200)
-    
+    """    
+    pdg_map, mass_map = maps
     
     corsika_pids = np.array(particle_description // 1000, dtype=np.int32)
     obs_levels = np.array((particle_description % 10) - 1, dtype=np.int32)
@@ -105,7 +103,7 @@ def kinetic_energy(mass, p2):
     return p2/(np.sqrt(p2 + mass**2) + mass)
     
 
-def final_values(particle_description, px, py, pz, zenith_angle):
+def final_values(particle_description, px, py, pz, zenith_angle, maps):
     """Return quantities: `pdgs, obs_levels, angles, kin_energy`
     obtained from Corsika data
 
@@ -124,7 +122,7 @@ def final_values(particle_description, px, py, pz, zenith_angle):
         `kin_energy`: kinetic energy in (GeV)
     """
     
-    masses, pdgs, obs_levels = mass_pdg_level(particle_description)
+    masses, pdgs, obs_levels = mass_pdg_level(particle_description, maps)
     angles, p2 = angle_and_p2(px, py, pz, zenith_angle)
     kin_energy = kinetic_energy(masses, p2)
     
