@@ -35,7 +35,7 @@ def print_missed_files(corsika_data_files_list):
             
             
 if __name__ == "__main__":
-    data_files = corsika_data_files("34_simple_run")
+    data_files = corsika_data_files("36_simple_run")
     print_missed_files(data_files)
     
                 

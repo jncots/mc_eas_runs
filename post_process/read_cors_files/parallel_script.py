@@ -10,7 +10,7 @@ from save2hdf5 import save_dict_to_hdf5
        
 def dict_for_hdf5(file):
     pdgs_to_get = [-12, 12, -13, 13, -14, 14]
-    theta = 30
+    theta = 0
     maps = pdg_mass_maps()
     
     corsika_dict = Corsika2Dict(file, theta, maps)
@@ -20,7 +20,7 @@ def dict_for_hdf5(file):
 
 if __name__ == '__main__':
     import time
-    data_files = corsika_data_files("34_simple_run")
+    data_files = corsika_data_files("spectrum_run/03_sp_muon_run")
     
     start = time.time()
     results = []
@@ -31,6 +31,6 @@ if __name__ == '__main__':
     
         
     save_dict_to_hdf5(join_dicts(results), 
-                    data_files[0].parents[1]/"corsika_ang_en.hdf5")
+                    data_files[0].parents[1]/"03_sp_muon_run.h5")
     end = time.time()
     print(f"Elapsed time = {end - start}")

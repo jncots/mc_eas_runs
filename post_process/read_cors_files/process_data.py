@@ -96,6 +96,15 @@ def mass_pdg_level(particle_description, maps):
     obs_levels = np.array((particle_description % 10) - 1, dtype=np.int32)
     masses = mass_map[corsika_pids]
     pdgs = pdg_map[corsika_pids]
+    
+    # pdg_collection = {}
+    # for pdg in pdgs:
+    #     pdg_collection[pdg] = pdg_collection.get(pdg, 0) + 1
+    
+    # print(f"PDGS in the shower:")
+    # for key, item in pdg_collection.items():
+    #     print(key, item)
+    
     return masses, pdgs, obs_levels
     
 

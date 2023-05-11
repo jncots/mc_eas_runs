@@ -6,7 +6,7 @@
 #SBATCH --mem=3gb                     # Job memory request
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=short_serial
-#SBATCH --time=01:00:00               # Time limit hrs:min:sec
+#SBATCH --time=00:10:00               # Time limit hrs:min:sec
 #SBATCH --output={logs_dir}/%x.%J.out
 #SBATCH --error={logs_dir}/%x.%J.err
 
@@ -14,6 +14,7 @@
 root_dir=/dicos_ui_home/antonpr/work/
 corsika_dir=${{root_dir}}/apps/bin/corsika-77420_gfor930_fl2021/run/
 corsika_exe=corsika77420Linux_SIBYLL_flukainfn
+# corsika_exe=corsika77420Linux_EPOS_urqmd
 
 # Run
 cd ${{corsika_dir}}

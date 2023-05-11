@@ -1,0 +1,37 @@
+RUNNR   {run_number}                              run number
+EVTNR   1                              number of first shower event
+NSHOW   {num_showers}                              number of showers to generate
+PRMPAR  {primary_particle}                             particle type of prim. particle (total energy, i.e mass is included)
+ESLOPE  -2.7                           slope of primary energy spectrum
+ERANGE  {prime_energy}  {prime_energy}                     energy range of primary particle
+THETAP  {zenith_angle}  {zenith_angle}                       range of zenith angle (degree)
+PHIP    0.  0.                    range of azimuth angle (degree)
+SEED    {seed_1}   0   0                      seed for 1. random number sequence
+SEED    {seed_2}   0   0                      seed for 2. random number sequence
+OBSLEV  {observ_level1}                         observation level (in cm)
+OBSLEV  {observ_level2}                         observation level (in cm)
+OBSLEV  {observ_level3}                         observation level (in cm)
+FIXCHI  0.0                             starting altitude (g/cm**2)
+MAGNET  1e-5  1e-5                     magnetic field centr. Europe
+HADFLG  0  0  0  0  0  2               flags hadr.interact.&fragmentation
+ECUTS   0.3  0.01  0.003  0.003         energy cuts for particles (kinetic energy)
+HILOW   {transition_energy}                            transition energy between models
+MUADDI  F                              additional info for muons
+MUMULT  {muon_mult_scat}                              muon multiple scattering angle
+ELMFLG  F   F                          em. interaction flags (NKG,EGS)
+STEPFC  1.0                            mult. scattering step length fact.
+RADNKG  200.E2                         outer radius for NKG lat.dens.distr.
+LONGI   F  20.  F  F                   longit.distr. & step size & fit & out
+ECTMAP  1.E4                           cut on gamma factor for printout
+MAXPRT  1                              max. number of printed events
+DIRECT  {output_directory}                        output directory
+USER    you                            user 
+DEBUG   F  6  F  1000000               debug flag and log.unit for out
+* ATMOD = 10 allows to change all atmosphere
+* User exponetial function as linear
+ATMOD 10
+ATMLAY 4e+05  10e+05  40e+05  1.12e+07
+ATMA   -1.44087935e+06 -1.44087935e+06  -1.44087935e+06  -1.44087935e+06 1.45127501e+04
+ATMB   1.45546439e+06  1.45546439e+06  1.45546439e+06  1.45546439e+06
+ATMC   1.12e+09  1.12e+09  1.12e+09  1.12e+09 7.77247586e+02
+EXIT                                   terminates input
