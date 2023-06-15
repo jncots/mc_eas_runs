@@ -5,10 +5,10 @@ import math
 
 python_script_dir = Path(__file__).parent
 
-corsika_inputs_dir = "inputs_templates/spectrum_runs"
+corsika_inputs_dir = "inputs_templates/03_single_muon_plus"
 corsika_inputs_dir = python_script_dir / corsika_inputs_dir
 
-corsika_inputs_template = "corsika_inputs_template_019"
+corsika_inputs_template = "corsika_inputs_template_023"
 corsika_sbatch_template = "corsika_sbatch_template"
 corsika_launch_template = "launch_template"
 
@@ -25,7 +25,7 @@ template = {
 
 def create_layout(run_name):
     base_dir = "/dicos_ui_home/antonpr/work/"
-    dir_with_runs = "corsika_runs/spectrum_run"
+    dir_with_runs = "corsika_runs/single_muon_plus"
     base_dir = Path(base_dir)
     dir_with_runs = base_dir / dir_with_runs
 
@@ -121,15 +121,49 @@ def create_input_params(run_layout, run_number, num_showers=500):
     # obs_levels = convert_km2cm([0.025232939039804742,
     #                             3.808506428696458,
     #                             14.096117926440979])
-    obs_levels = convert_X2cm([1000, 5000, 10000])
+    # obs_levels = convert_X2cm([1, 10, 100, 300, 700, 
+    #                            1000, 3000, 5000, 7000, 10000])
+    
+#    h=910, X=1.0821734242570649 km
+#    h=950, X=0.7259749230646722 km
+#    h=1000, X=0.29795582344377586 km
+#    h=1033, X=0.025232939039804742 km
+
+    # obs_levels = convert_km2cm([1.0821734242570649,
+    #                             0.7259749230646722,
+    #                             0.29795582344377586,
+    #                             0.025232939039804742])
+    
+    # h=901, X=6.467456341538733 km
+    # h=910, X=6.395447555972811 km
+    # h=950, X=6.082392745134196 km
+    # h=1000, X=5.70620296295444 km
+    # h=1300, X=3.7345892723273546 km
+    # h=1700, X=1.608404761573915 km
+    # h=2000, X=0.2684020846247984 km
+    # h=2065, X=0.0005261421799374817 km
+    
+    # X=21, h=26.460540135934913 km
+    # X=86, h=17.34906837102295 km
+    # X=210, h=11.642923389933058 km
+    # X=492, h=5.867563353733878 km
+    # X=1033, h=0.025232939039804742 km
+    
+    obs_levels = convert_km2cm([26.460540135934913,
+                                17.34906837102295,
+                                11.642923389933058,
+                                5.867563353733878,
+                                0.025232939039804742
+                                ])
+    
     input_params = {
         "run_number": run_number,
         "num_showers": num_showers,
         # "prime_energy": 100 + 0.105658,  # in GeV
         "spectrum_slope": -3.0,
-        "prime_energy1": 0.5,
+        "prime_energy1": 1000,
         "prime_energy2": 1000,
-        "primary_particle": 6,  # 6 is muon
+        "primary_particle": 5,  # 6 is muon(mu-), 5 is mu+
         # "prime_energy" : 1e6 + .105658, # in GeV muon
         # "prime_energy" : 100 + 0.938272, # in GeV
         # "primary_particle" : 14, # 14 is proton
@@ -139,6 +173,8 @@ def create_input_params(run_layout, run_number, num_showers=500):
         "observ_level1": obs_levels[0],
         "observ_level2": obs_levels[1],
         "observ_level3": obs_levels[2],
+        "observ_level4": obs_levels[3],
+        "observ_level5": obs_levels[4],
         "transition_energy": 200,  # in GeV
         "muon_mult_scat": "T",
         "output_directory": f"{results_dir}/",

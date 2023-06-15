@@ -10,11 +10,11 @@ from generate_run_layout import (
 import subprocess
 
 
-run_layout = create_layout("04_sp_muon_run")
+run_layout = create_layout("02_single_muon_run")
 
 
 njobs = 1
-nruns = 10000
+nruns = 500
 num_showers_each = 5000
 batch_files = []
 for run_number in range(nruns):

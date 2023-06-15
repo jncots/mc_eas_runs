@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH --job-name=myjob
-#SBATCH --nodes=50
-#SBATCH --ntasks-per-node=12
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=20
 #SBATCH --mem-per-cpu=4G
-#SBATCH --time=0:01:00
+#SBATCH --time=00:10:00
 
 #module load python/3.8.0
 
