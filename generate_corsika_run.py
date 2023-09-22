@@ -10,12 +10,12 @@ from generate_run_layout import (
 import subprocess
 
 
-run_layout = create_layout("02_single_muon_run")
+run_layout = create_layout("04_single_muon_run")
 
 
 njobs = 1
-nruns = 500
-num_showers_each = 5000
+nruns = 600
+num_showers_each = 50000
 batch_files = []
 for run_number in range(nruns):
     input_params = create_input_params(

@@ -50,7 +50,6 @@ def join_dicts(results):
     # Assume that all dicts have the same number of observation levels:
     result0 = results[0]
     pdgs_to_get = list(result0.keys())[:-1]
-    obs_level_num = len(result0[pdgs_to_get[0]])
     
     pdgs_to_get = []
     obs_level_list = []

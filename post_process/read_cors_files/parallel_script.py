@@ -24,7 +24,7 @@ def dict_for_hdf5(file):
 
 if __name__ == '__main__':
     import time
-    data_files = corsika_data_files("single_muon_plus/02_single_muon_run")
+    data_files = corsika_data_files("single_muon_plus/04_single_muon_run")
     # data_files = corsika_data_files("38_simple_run")
     
     start = time.time()
@@ -36,6 +36,6 @@ if __name__ == '__main__':
     
         
     save_dict_to_hdf5(join_dicts(results), 
-                    data_files[0].parents[1]/"02_single_muon.h5")
+                    data_files[0].parents[1]/"04_single_muon.h5")
     end = time.time()
     print(f"Elapsed time = {end - start}")
