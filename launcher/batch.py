@@ -1,10 +1,10 @@
 from pathlib import Path
 
-def script_header(job_options, 
+def script_header(slurm_directive, 
                   shebang = "#!/bin/bash",
-                  specifier = "# SBATCH --"):
+                  specifier = "#SBATCH --"):
     header = shebang + "\n"
-    for key, value in job_options.items():
+    for key, value in slurm_directive.items():
         if value is not None:
             header += f"\n{specifier}{key}={value}"
     header += "\n"
